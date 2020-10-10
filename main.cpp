@@ -1,3 +1,4 @@
+#include <iostream>
 #include "header/entity.h"
 #include "header/heart.h"
 
@@ -7,12 +8,12 @@ int main()
     Entity player;
     player.setRadius(20.f);
     player.setSpeed(0.1f);
-    player.setFillColor(sf::Color::Red);
+    player.setFillColor(sf::Color::White);
+    player.setPosition(sf::Vector2f(window.getSize().x / 2, window.getSize().y / 2));
 
     sf::Texture heartTexture;
     heartTexture.loadFromFile("sprites/hearts.png");
     Heart heart(heartTexture);
-    heart.setState(State::1);
 
     while (window.isOpen())
     {
@@ -21,6 +22,14 @@ int main()
         {
             if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
                 window.close();
+            if (event.type == sf::Event::KeyPressed) {
+              if (event.key.code == sf::Keyboard::F) {
+                int state = heart.getState();
+                std::cout << state << std::endl;
+                state++;
+                heart.setState(state);
+              }
+            }
         }
 
         window.clear();
