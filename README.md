@@ -1,10 +1,10 @@
 # Dodge
 
-###### Compile
+## Compile
 
 sudo g++ main.cpp source/* -lsfml-graphics -lsfml-window -lsfml-system
 
-###### To do
+## To do
 
 - [x] create player
 - [ ] create enemy
@@ -13,6 +13,7 @@ sudo g++ main.cpp source/* -lsfml-graphics -lsfml-window -lsfml-system
 - [ ] collision detection
 - [x] create heart
 
+## Class Structure
 | Entity                                                            |
 |-------------------------------------------------------------------|
 | Entity()<br>~Entity()<br>setSpeed(float)<br>movePlayer(Direction) |
@@ -20,3 +21,6 @@ sudo g++ main.cpp source/* -lsfml-graphics -lsfml-window -lsfml-system
 | Heart                                                                     |
 |---------------------------------------------------------------------------|
 | Heart()<br>Heart(sf::Texture&)<br>~Heart()<br>setState(int)<br>getState() |
+
+## Media
+![Heart Sprite](sprites/hearts.png)
