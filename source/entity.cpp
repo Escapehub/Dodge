@@ -26,6 +26,5 @@ void Entity::movePlayer(Direction direction) {
     case Direction::Right:
       this->move(speed, 0);
       break;
-
   }
 }
