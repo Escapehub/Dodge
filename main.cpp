@@ -5,9 +5,11 @@
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "Dodge");
+
     // Menu
     bool isPlaying = false;
     Menu menu(window.getSize().x, window.getSize().y);
+
     // Player
     Entity player;
     player.setRadius(20.f);
@@ -56,8 +58,18 @@ int main()
               }
             }
         }
-
+        // Generating enemies
+        if (enemyClock.getElapsedTime().asSeconds() > 5) {
+          Entity enemy;
+          enemy.setRadius(10.f);
+          enemy.setSpeed(0.1f);
+          enemy.setFillColor(sf::Color::Red);
+          enemy.setPosition(sf::Vector2f(window.getSize().x / 3, window.getSize().y / 3));
+          enemies.push_back(enemy);
+          enemyClock.restart();
+        }
         window.clear();
+
         // Player movement
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
           player.movePlayer(Direction::Up);
@@ -69,6 +81,16 @@ int main()
           player.movePlayer(Direction::Left);
 
         if (isPlaying) {
+          // Drawing enemies
+          for (Entity e : enemies) {
+            window.draw(e);
+          }
+          // Moving enemies
+          for (int i = 0; i < enemies.size(); i++) {
+            enemies[i].movePlayer(Direction::Left);
+            if (enemies[i].getPosition().x < 0)
+              enemies.erase(enemies.begin() + i);
+          }
           window.draw(player);
           window.draw(heart);
         } else {
