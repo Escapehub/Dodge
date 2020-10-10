@@ -6,8 +6,9 @@ sudo g++ main.cpp source/* -lsfml-graphics -lsfml-window -lsfml-system
 
 ###### To do
 
-- [ ] create player
+- [x] create player
 - [ ] create enemy
-- [ ] player movement
+- [x] player movement
 - [ ] enemy movement
 - [ ] collision detection
+- [x] create heart
