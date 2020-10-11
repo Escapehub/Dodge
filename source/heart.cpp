@@ -22,3 +22,8 @@ void Heart::setState(int s) {
 int Heart::getState() {
   return currentState;
 }
+
+void Heart::Hit() {
+  currentState++;
+  this->setTextureRect(State[currentState]);
+}

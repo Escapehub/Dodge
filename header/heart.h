@@ -8,6 +8,7 @@ public:
   virtual ~Heart();
   void setState(int);
   int getState();
+  void Hit();
 private:
   int currentState = 1;
   std::map<int, sf::IntRect> State =
