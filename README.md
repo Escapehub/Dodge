@@ -15,13 +15,13 @@ sudo g++ main.cpp source/* -lsfml-graphics -lsfml-window -lsfml-system
 - [ ] enemy movement
 - [ ] collision detection
 - [x] create heart
-- [ ] create multi-menu
-- [ ] difficulty within options screen
+- [x] create multi-menu~
+- [x] difficulty within options screen~
 
 ## Class Structure
-| Entity                                                            | Heart                                                                     | Menu                                                                                                   |
-|-------------------------------------------------------------------|---------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
-| Entity()<br>~Entity()<br>setSpeed(float)<br>movePlayer(Direction) | Heart()<br>Heart(sf::Texture&)<br>~Heart()<br>setState(int)<br>getState() | Menu(float, float)<br>~Menu()<br>Draw(sf::RenderWindow&)<br>moveUp()<br>moveDown()<br>GetPressedItem() |
+| Entity                                                            | Heart                                                                              | Menu                                                                                                                    |
+|-------------------------------------------------------------------|------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
+| Entity()<br>~Entity()<br>setSpeed(float)<br>movePlayer(Direction) | Heart()<br>Heart(sf::Texture&)<br>~Heart()<br>setState(int)<br>getState()<br>Hit() | Menu(float, float)<br>~Menu()<br>Draw(sf::RenderWindow&)<br>Navigation(sf:Event&, sf::RenderWindow&)<br>getDifficulty() |
 
 ## Media
 ![Heart Sprite](sprites/hearts.png)
