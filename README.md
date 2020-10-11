@@ -1,6 +1,8 @@
 ![C/C++ CI](https://github.com/Escapehub/Dodge/workflows/C/C++%20CI/badge.svg)
 # Dodge
 
+Simple survival game. Move the white dot and don't get hit by the red ones.
+
 ## Compile
 
 sudo g++ main.cpp source/* -lsfml-graphics -lsfml-window -lsfml-system
