@@ -35,23 +35,7 @@ int main()
                 window.close();
             if (event.type == sf::Event::KeyPressed) {
               if (!isPlaying) {
-                if (event.key.code == sf::Keyboard::Up)
-                  menu.moveUp();
-                else if (event.key.code == sf::Keyboard::Down)
-                  menu.moveDown();
-                else if (event.key.code == sf::Keyboard::Return) {
-                  switch (menu.getPressedItem()) {
-                    case 0:
-                      isPlaying = true;
-                      break;
-                    case 1:
-                      std::cout << "Option key pressed" << std::endl;
-                      break;
-                    case 2:
-                      window.close();
-                      break;
-                  }
-                }
+                isPlaying = menu.Navigation(event, window);
               } else {
                 if (event.key.code == sf::Keyboard::Escape)
                   isPlaying = false;
