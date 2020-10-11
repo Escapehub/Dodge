@@ -7,9 +7,18 @@ int main()
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "Dodge");
 
     // Menu
-    bool isPlaying = false;
+    bool isPlaying = true;
     Menu menu(window.getSize().x, window.getSize().y);
 
+    // Game over
+    sf::Font font;
+    font.loadFromFile("fonts/prstartk.ttf");
+    sf::Text gameOver;
+    gameOver.setFont(font);
+    gameOver.setCharacterSize(100);
+    gameOver.setFillColor(sf::Color::White);
+    gameOver.setString("Game Over");
+    gameOver.setPosition(sf::Vector2f(window.getSize().x / 4, window.getSize().y / 2));
     // Player
     Entity player;
     player.setRadius(20.f);
@@ -34,13 +43,13 @@ int main()
             if (event.type == sf::Event::Closed)
                 window.close();
             if (event.type == sf::Event::KeyPressed) {
-              if (!isPlaying) {
-                isPlaying = menu.Navigation(event, window);
-              } else {
-                if (event.key.code == sf::Keyboard::Escape)
-                  isPlaying = false;
-              }
-            }
+            //   if (!isPlaying) {
+            //     isPlaying = menu.Navigation(event, window);
+            //   } else {
+            //     if (event.key.code == sf::Keyboard::Escape)
+            //       isPlaying = false;
+            //   }
+           }
         }
         // Generating enemies
         if (enemyClock.getElapsedTime().asSeconds() > 5) {
@@ -63,22 +72,34 @@ int main()
           player.movePlayer(Direction::Down);
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
           player.movePlayer(Direction::Left);
-
-        if (isPlaying) {
-          // Drawing enemies
-          for (Entity e : enemies) {
-            window.draw(e);
-          }
-          // Moving enemies
+        // Hit Reg
+        if (!enemies.empty()) {
           for (int i = 0; i < enemies.size(); i++) {
-            enemies[i].movePlayer(Direction::Left);
-            if (enemies[i].getPosition().x < 0)
+            if (enemies[i].getGlobalBounds().intersects(player.getGlobalBounds())) {
               enemies.erase(enemies.begin() + i);
+              heart.Hit();
+            }
           }
-          window.draw(player);
-          window.draw(heart);
+        }
+        if (heart.getState() < 4) {
+          if (isPlaying) {
+            // Drawing enemies
+            for (Entity e : enemies) {
+              window.draw(e);
+            }
+            // Moving enemies
+            for (int i = 0; i < enemies.size(); i++) {
+              enemies[i].movePlayer(Direction::Left);
+              if (enemies[i].getPosition().x < 0)
+                enemies.erase(enemies.begin() + i);
+            }
+            window.draw(player);
+            window.draw(heart);
+          } else {
+            menu.Draw(window);
+          }
         } else {
-          menu.Draw(window);
+          window.draw(gameOver);
         }
         window.display();
     }
