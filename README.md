@@ -1,3 +1,4 @@
+![C/C++ CI](https://github.com/Escapehub/Dodge/workflows/C/C++%20CI/badge.svg)
 # Dodge
 
 ## Compile
