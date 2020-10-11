@@ -15,6 +15,8 @@ sudo g++ main.cpp source/* -lsfml-graphics -lsfml-window -lsfml-system
 - [ ] enemy movement
 - [ ] collision detection
 - [x] create heart
+- [ ] create multi-menu
+- [ ] difficulty within options screen
 
 ## Class Structure
 | Entity                                                            | Heart                                                                     | Menu                                                                                                   |
